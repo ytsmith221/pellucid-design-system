@@ -1,0 +1,271 @@
+/* ============================================================
+   Pellucid Design System — Foundations
+   Drop into any HTML file alongside the Google Fonts <link>.
+   ============================================================ */
+
+/* ----- Fonts (Google Fonts) ---------------------------------
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+   NOTE on substitutions: Newsreader, Manrope, and JetBrains Mono
+   are stand-ins for licensed faces (e.g. GT Sectra, Söhne, Berkeley
+   Mono). If you have brand fonts, drop .woff2 files into ../fonts/
+   and replace the families below.
+   ----------------------------------------------------------- */
+
+:root {
+  /* ============ COLOR ============ */
+
+  /* Paper — warm off-white backgrounds */
+  --paper-50:  #FAF8F3;   /* default page bg */
+  --paper-100: #F3EFE6;   /* inset surface */
+  --paper-200: #E8E2D4;   /* divider, soft border */
+
+  /* Canvas — pure white, reserved for "the document being remediated" */
+  --canvas:    #FFFFFF;
+
+  /* Ink — text + structural lines */
+  --ink-900: #14181C;   /* primary text, headlines */
+  --ink-800: #1F242A;
+  --ink-700: #2B3138;   /* body text */
+  --ink-500: #5B636B;   /* secondary text */
+  --ink-400: #7C848D;   /* tertiary text */
+  --ink-300: #9CA3AA;   /* placeholder, hairlines */
+  --ink-200: #C8CCD0;   /* default border */
+  --ink-100: #E2E5E8;   /* hover border, faint divider */
+
+  /* Lucid Teal — primary brand */
+  --teal-900: #102E28;
+  --teal-700: #1F4D45;
+  --teal-500: #2E7567;   /* THE brand color */
+  --teal-400: #4F9081;
+  --teal-300: #7AB5A6;
+  --teal-200: #B6D8CF;
+  --teal-100: #DCEEE8;
+  --teal-50:  #EEF6F3;
+
+  /* Amber — warnings, unresolved issues */
+  --amber-700: #8A4E0E;
+  --amber-500: #C97A1A;
+  --amber-300: #E2AC68;
+  --amber-100: #F8EAD2;
+  --amber-50:  #FBF3E4;
+
+  /* Rust — blocking errors */
+  --rust-700:  #7C2F22;
+  --rust-500:  #B14A3A;
+  --rust-300:  #D6907F;
+  --rust-100:  #F4DAD3;
+  --rust-50:   #FAEAE4;
+
+  /* Sage — resolved, success */
+  --sage-700:  #3E5F35;
+  --sage-500:  #5C8A4E;
+  --sage-300:  #97B989;
+  --sage-100:  #DAE6CF;
+  --sage-50:   #ECF1E3;
+
+  /* ============ SEMANTIC ALIASES ============ */
+
+  --bg-page:        var(--paper-50);
+  --bg-surface:     var(--paper-50);
+  --bg-inset:       var(--paper-100);
+  --bg-canvas:      var(--canvas);
+  --bg-hover:       rgba(20, 24, 28, 0.04);
+  --bg-pressed:     rgba(20, 24, 28, 0.08);
+
+  --fg-default:     var(--ink-900);
+  --fg-muted:       var(--ink-500);
+  --fg-subtle:      var(--ink-400);
+  --fg-onbrand:     var(--paper-50);
+
+  --border-default: var(--ink-200);
+  --border-strong:  var(--ink-300);
+  --border-subtle:  var(--paper-200);
+
+  --brand:          var(--teal-500);
+  --brand-hover:    var(--teal-700);
+  --brand-bg:       var(--teal-50);
+
+  --warning:        var(--amber-500);
+  --warning-bg:     var(--amber-50);
+  --error:          var(--rust-500);
+  --error-bg:       var(--rust-50);
+  --success:        var(--sage-500);
+  --success-bg:     var(--sage-50);
+
+  --focus-ring:     0 0 0 3px var(--teal-100), 0 0 0 4px var(--teal-500);
+
+  /* ============ TYPE ============ */
+  --font-display:   'Newsreader', 'Iowan Old Style', Georgia, serif;
+  --font-body:      'Manrope', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-mono:      'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Type scale (px-based, calm editorial) */
+  --type-display-xl: 72px;
+  --type-display-l:  56px;
+  --type-display-m:  40px;
+  --type-h1:         32px;
+  --type-h2:         24px;
+  --type-h3:         19px;
+  --type-h4:         17px;
+  --type-body:       16px;
+  --type-body-sm:    14px;
+  --type-caption:    13px;
+  --type-micro:      11px;
+
+  /* Line-heights */
+  --lh-tight:   1.05; /* @kind other */
+  --lh-snug:    1.2; /* @kind other */
+  --lh-default: 1.45; /* @kind other */
+  --lh-relaxed: 1.6; /* @kind other */
+
+  /* Letter-spacing */
+  --ls-tight:   -0.02em;
+  --ls-snug:    -0.01em;
+  --ls-default: 0; /* @kind other */
+  --ls-wide:    0.04em;
+  --ls-eyebrow: 0.12em;
+
+  /* ============ SPACING (4px base) ============ */
+  --space-1:   4px;
+  --space-2:   8px;
+  --space-3:   12px;
+  --space-4:   16px;
+  --space-5:   20px;
+  --space-6:   24px;
+  --space-8:   32px;
+  --space-10:  40px;
+  --space-12:  48px;
+  --space-16:  64px;
+  --space-24:  96px;
+  --space-32:  128px;
+
+  /* ============ RADII ============ */
+  --radius-sm:   6px;
+  --radius-md:   10px;
+  --radius-lg:   14px;
+  --radius-pill: 999px;
+
+  /* ============ SHADOWS (minimal) ============ */
+  --shadow-sm: 0 1px 2px rgba(20, 24, 28, 0.04),
+               0 2px 8px rgba(20, 24, 28, 0.04);
+  --shadow-md: 0 4px 12px rgba(20, 24, 28, 0.06),
+               0 12px 32px rgba(20, 24, 28, 0.08);
+
+  /* ============ MOTION ============ */
+  --ease-out:   cubic-bezier(0.2, 0, 0, 1); /* @kind other */
+  --ease-in:    cubic-bezier(0.4, 0, 1, 1); /* @kind other */
+  --duration-fast:   120ms; /* @kind other */
+  --duration-base:   200ms; /* @kind other */
+  --duration-slow:   320ms; /* @kind other */
+}
+
+/* ============================================================
+   Base
+   ============================================================ */
+
+html, body {
+  background: var(--bg-page);
+  color: var(--fg-default);
+  font-family: var(--font-body);
+  font-size: var(--type-body);
+  line-height: var(--lh-default);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--teal-100);
+  color: var(--ink-900);
+}
+
+/* ============================================================
+   Semantic typography classes
+   Use these directly OR map them onto h1, h2, p, etc.
+   ============================================================ */
+
+.display-xl, .display-l, .display-m, .h1-display {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: var(--ls-tight);
+  line-height: var(--lh-tight);
+  color: var(--ink-900);
+}
+.display-xl  { font-size: var(--type-display-xl); }
+.display-l   { font-size: var(--type-display-l); }
+.display-m   { font-size: var(--type-display-m); }
+.h1-display  { font-size: var(--type-h1); }
+
+.h1, .h2, .h3, .h4 {
+  font-family: var(--font-body);
+  color: var(--ink-900);
+  letter-spacing: var(--ls-snug);
+  line-height: var(--lh-snug);
+}
+.h1 { font-size: var(--type-h1); font-weight: 600; }
+.h2 { font-size: var(--type-h2); font-weight: 600; }
+.h3 { font-size: var(--type-h3); font-weight: 600; }
+.h4 { font-size: var(--type-h4); font-weight: 600; }
+
+.body          { font-size: var(--type-body);    line-height: var(--lh-default); color: var(--ink-700); }
+.body-large    { font-size: 18px;                line-height: var(--lh-relaxed); color: var(--ink-700); }
+.body-small    { font-size: var(--type-body-sm); line-height: var(--lh-default); color: var(--ink-700); }
+.caption       { font-size: var(--type-caption); line-height: var(--lh-default); color: var(--fg-muted); }
+.micro         { font-size: var(--type-micro);   line-height: var(--lh-default); color: var(--fg-muted); }
+
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: var(--type-micro);
+  font-weight: 600;
+  letter-spacing: var(--ls-eyebrow);
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+.mono, code, kbd, samp {
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  font-feature-settings: "calt" 0;
+}
+
+.serif-italic {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+}
+
+a {
+  color: var(--brand);
+  text-decoration: underline;
+  text-decoration-color: var(--teal-200);
+  text-underline-offset: 3px;
+  transition: text-decoration-color var(--duration-fast) var(--ease-out);
+}
+a:hover {
+  text-decoration-color: var(--teal-500);
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--border-default);
+  margin: var(--space-8) 0;
+}
+
+/* ============================================================
+   Utility — focus ring, paper grid motif
+   ============================================================ */
+
+.focus-ring:focus-visible,
+:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+  border-radius: var(--radius-sm);
+}
+
+.paper-grid {
+  background-image: linear-gradient(to bottom, transparent 23px, var(--paper-200) 23px, var(--paper-200) 24px);
+  background-size: 100% 24px;
+}

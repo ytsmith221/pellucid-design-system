@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pellucid design system — reference</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="tokens.css">
+<style>
+  body { margin: 0; padding: var(--space-12) var(--space-8) var(--space-32); max-width: 920px; }
+  section { margin-bottom: var(--space-16); }
+  section > h2 { border-bottom: 1px solid var(--border-default); padding-bottom: var(--space-3); margin-bottom: var(--space-6); }
+  .row { display: flex; gap: var(--space-3); flex-wrap: wrap; align-items: center; }
+  .col { display: flex; flex-direction: column; gap: var(--space-3); }
+  .tag { font-family: var(--font-mono); font-size: 10px; color: var(--fg-subtle); }
+
+  /* ---- color swatches ---- */
+  .swatch-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: var(--space-2); }
+  .swatch { aspect-ratio: 1.2 / 1; border-radius: var(--radius-sm); padding: var(--space-2); display: flex; flex-direction: column; justify-content: space-between; border: 1px solid var(--border-subtle); }
+  .swatch .name { font-size: 11px; font-weight: 600; }
+  .swatch .hex { font-family: var(--font-mono); font-size: 10px; opacity: 0.75; }
+
+  /* ---- buttons ---- */
+  button { font-family: var(--font-body); font-weight: 500; font-size: 14px; border-radius: var(--radius-sm); padding: 10px 16px; cursor: pointer; transition: all var(--duration-base) var(--ease-out); border: 1px solid transparent; line-height: 1; display: inline-flex; align-items: center; gap: var(--space-2); }
+  .btn-primary { background: var(--brand); color: var(--fg-onbrand); }
+  .btn-primary:hover { background: var(--brand-hover); }
+  .btn-secondary { background: var(--bg-surface); color: var(--fg-default); border-color: var(--border-default); }
+  .btn-secondary:hover { background: var(--bg-inset); border-color: var(--border-strong); }
+  .btn-ghost { background: transparent; color: var(--ink-700); }
+  .btn-ghost:hover { background: var(--bg-hover); }
+  .btn-danger { background: var(--bg-surface); color: var(--rust-700); border-color: var(--rust-100); }
+  .btn-danger:hover { background: var(--error-bg); border-color: var(--rust-300); }
+
+  /* ---- badges / chips ---- */
+  .badge { display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px; border-radius: var(--radius-pill); font-size: 12px; font-weight: 500; line-height: 1; }
+  .dot { width: 6px; height: 6px; border-radius: var(--radius-pill); }
+  .b-info { background: var(--teal-50); color: var(--teal-700); }
+  .b-warn { background: var(--warning-bg); color: var(--amber-700); }
+  .b-error { background: var(--error-bg); color: var(--rust-700); }
+  .b-success { background: var(--success-bg); color: var(--sage-700); }
+  .b-neutral { background: var(--bg-inset); color: var(--ink-700); border: 1px solid var(--border-default); }
+  .chip { padding: 6px 10px; border-radius: var(--radius-sm); font-size: 12px; font-family: var(--font-mono); background: var(--bg-inset); color: var(--ink-700); border: 1px solid var(--border-default); }
+
+  /* ---- forms ---- */
+  .field { display: flex; flex-direction: column; gap: 6px; }
+  .field-label { font-size: 12px; font-weight: 600; color: var(--ink-700); }
+  input, select, textarea { font-family: var(--font-body); font-size: 14px; color: var(--ink-900); background: var(--bg-surface); border: 1px solid var(--border-default); border-radius: var(--radius-sm); padding: 9px 12px; line-height: 1.3; outline: none; transition: all var(--duration-base) var(--ease-out); min-width: 220px; }
+  input::placeholder { color: var(--ink-300); }
+  input:focus-visible { border-color: var(--brand); box-shadow: var(--focus-ring); }
+  .input-error { border-color: var(--error); }
+  .error-text { color: var(--rust-700); font-size: 12px; }
+
+  /* ---- card ---- */
+  .card { background: var(--bg-surface); border: 1px solid var(--border-default); border-radius: var(--radius-md); padding: var(--space-5); width: 260px; }
+  .card:hover { box-shadow: var(--shadow-sm); }
+  .card .title { font-weight: 600; font-size: 15px; color: var(--ink-900); margin-bottom: var(--space-1); }
+  .card .meta { font-family: var(--font-mono); font-size: 11px; color: var(--fg-subtle); }
+  .progress { height: 4px; background: var(--paper-200); border-radius: var(--radius-pill); overflow: hidden; margin-top: var(--space-3); }
+  .progress-fill { height: 100%; background: var(--brand); }
+
+  /* ---- shadows / radii tiles ---- */
+  .tile { display: flex; flex-direction: column; align-items: center; gap: var(--space-2); }
+  .tile .box { width: 88px; height: 64px; background: var(--bg-inset); border: 1px solid var(--border-default); display: flex; align-items: center; justify-content: center; font-family: var(--font-mono); font-size: 10px; color: var(--fg-muted); }
+
+  /* ---- spacing bars ---- */
+  .scale { display: flex; flex-direction: column; align-items: center; gap: var(--space-2); }
+  .bar { background: var(--brand); border-radius: 3px; width: 18px; }
+
+  /* ---- logo ---- */
+  .logo-wrap { padding: 18px 22px; border-radius: var(--radius-md); border: 1px solid var(--border-default); display: flex; align-items: center; gap: 10px; }
+  .logo-wrap.dark { background: var(--ink-900); border-color: var(--ink-900); }
+  .wordmark { font-family: var(--font-display); font-size: 28px; font-weight: 500; letter-spacing: -0.4px; line-height: 1; }
+</style>
+</head>
+<body>
+
+  <header style="margin-bottom: var(--space-16);">
+    <p class="eyebrow">Pellucid design system</p>
+    <h1 class="h1-display" style="margin: var(--space-2) 0;">Reference gallery</h1>
+    <p class="body" style="color: var(--fg-muted); max-width: 60ch;">
+      Plain HTML/CSS, no build step. Every block below is copy-pasteable —
+      it only depends on <code class="mono">tokens.css</code> and the Google
+      Fonts stylesheet linked at the top of this file.
+    </p>
+  </header>
+
+  <section>
+    <h2 class="h2">Color — paper &amp; ink</h2>
+    <div class="swatch-grid">
+      <div class="swatch" style="background:#FAF8F3; color:#14181C; border-color:#E8E2D4;"><span class="name">paper-50</span><span class="hex">#FAF8F3</span></div>
+      <div class="swatch" style="background:#F3EFE6; color:#14181C;"><span class="name">paper-100</span><span class="hex">#F3EFE6</span></div>
+      <div class="swatch" style="background:#E8E2D4; color:#14181C;"><span class="name">paper-200</span><span class="hex">#E8E2D4</span></div>
+      <div class="swatch" style="background:#FFFFFF; color:#14181C; border-color:#E8E2D4;"><span class="name">canvas</span><span class="hex">#FFFFFF</span></div>
+      <div class="swatch" style="background:#E2E5E8; color:#14181C;"><span class="name">ink-100</span><span class="hex">#E2E5E8</span></div>
+      <div class="swatch" style="background:#C8CCD0; color:#14181C;"><span class="name">ink-200</span><span class="hex">#C8CCD0</span></div>
+      <div class="swatch" style="background:#9CA3AA; color:#14181C;"><span class="name">ink-300</span><span class="hex">#9CA3AA</span></div>
+      <div class="swatch" style="background:#7C848D; color:#FAF8F3;"><span class="name">ink-400</span><span class="hex">#7C848D</span></div>
+      <div class="swatch" style="background:#5B636B; color:#FAF8F3;"><span class="name">ink-500</span><span class="hex">#5B636B</span></div>
+      <div class="swatch" style="background:#2B3138; color:#FAF8F3;"><span class="name">ink-700</span><span class="hex">#2B3138</span></div>
+      <div class="swatch" style="background:#14181C; color:#FAF8F3;"><span class="name">ink-900</span><span class="hex">#14181C</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="h2">Color — Lucid Teal (brand)</h2>
+    <div class="swatch-grid">
+      <div class="swatch" style="background:#EEF6F3; color:#102E28;"><span class="name">teal-50</span><span class="hex">#EEF6F3</span></div>
+      <div class="swatch" style="background:#DCEEE8; color:#102E28;"><span class="name">teal-100</span><span class="hex">#DCEEE8</span></div>
+      <div class="swatch" style="background:#B6D8CF; color:#102E28;"><span class="name">teal-200</span><span class="hex">#B6D8CF</span></div>
+      <div class="swatch" style="background:#7AB5A6; color:#102E28;"><span class="name">teal-300</span><span class="hex">#7AB5A6</span></div>
+      <div class="swatch" style="background:#4F9081; color:#FAF8F3;"><span class="name">teal-400</span><span class="hex">#4F9081</span></div>
+      <div class="swatch" style="background:#2E7567; color:#FAF8F3;"><span class="name">teal-500 — brand</span><span class="hex">#2E7567</span></div>
+      <div class="swatch" style="background:#1F4D45; color:#FAF8F3;"><span class="name">teal-700</span><span class="hex">#1F4D45</span></div>
+      <div class="swatch" style="background:#102E28; color:#FAF8F3;"><span class="name">teal-900</span><span class="hex">#102E28</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="h2">Color — status (amber / rust / sage)</h2>
+    <div class="row" style="gap: var(--space-8); align-items: flex-start;">
+      <div class="col">
+        <span class="tag">AMBER · WARNING</span>
+        <div class="badge b-warn"><span class="dot" style="background:#C97A1A"></span>14 unresolved</div>
+      </div>
+      <div class="col">
+        <span class="tag">RUST · ERROR</span>
+        <div class="badge b-error"><span class="dot" style="background:#B14A3A"></span>2 blockers</div>
+      </div>
+      <div class="col">
+        <span class="tag">SAGE · SUCCESS</span>
+        <div class="badge b-success"><span class="dot" style="background:#5C8A4E"></span>412 resolved</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="h2">Type</h2>
+    <div class="col" style="margin-bottom: var(--space-6);">
+      <div class="display-l">Eliminate accessibility debt.</div>
+      <div class="serif-italic" style="font-size: 28px;">Remediation, in minutes.</div>
+    </div>
+    <div class="col">
+      <div class="row"><span class="tag" style="width:90px;">h1</span><span class="h1">Document overview</span></div>
+      <div class="row"><span class="tag" style="width:90px;">h2</span><span class="h2">Tag tree</span></div>
+      <div class="row"><span class="tag" style="width:90px;">h3</span><span class="h3">Reading order</span></div>
+      <div class="row"><span class="tag" style="width:90px;">body</span><span class="body">Pellucid tagged 412 figures across 86 pages in 3 minutes.</span></div>
+      <div class="row"><span class="tag" style="width:90px;">caption</span><span class="caption">Reviewed by Alex Chen · 2 minutes ago</span></div>
+      <div class="row"><span class="tag" style="width:90px;">eyebrow</span><span class="eyebrow">Compliance</span></div>
+      <div class="row"><span class="tag" style="width:90px;">mono</span><span class="mono">PDF/UA-1 · WCAG 2.2 AA</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="h2">Spacing (4px scale)</h2>
+    <div class="row" style="align-items: flex-end;">
+      <div class="scale"><div class="bar" style="height:4px"></div><span class="tag">4</span></div>
+      <div class="scale"><div class="bar" style="height:8px"></div><span class="tag">8</span></div>
+      <div class="scale"><div class="bar" style="height:12px"></div><span class="tag">12</span></div>
+      <div class="scale"><div class="bar" style="height:16px"></div><span class="tag">16</span></div>
+      <div class="scale"><div class="bar" style="height:20px"></div><span class="tag">20</span></div>
+      <div class="scale"><div class="bar" style="height:24px"></div><span class="tag">24</span></div>
+      <div class="scale"><div class="bar" style="height:32px"></div><span class="tag">32</span></div>
+      <div class="scale"><div class="bar" style="height:48px"></div><span class="tag">48</span></div>
+      <div class="scale"><div class="bar" style="height:64px"></div><span class="tag">64</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="h2">Radii &amp; shadows</h2>
+    <div class="row" style="gap: var(--space-8);">
+      <div class="tile"><div class="box" style="border-radius:0">none</div><span class="tag">0</span></div>
+      <div class="tile"><div class="box" style="border-radius:6px">sm</div><span class="tag">6px</span></div>
+      <div class="tile"><div class="box" style="border-radius:10px">md</div><span class="tag">10px</span></div>
+      <div class="tile"><div class="box" style="border-radius:14px">lg</div><span class="tag">14px</span></div>
+      <div class="tile"><div class="box" style="border-radius:999px; width:96px;">pill</div><span class="tag">999px</span></div>
+      <div class="tile"><div class="box" style="box-shadow: var(--shadow-sm);">shadow-sm</div><span class="tag">hover lift</span></div>
+      <div class="tile"><div class="box" style="box-shadow: var(--shadow-md);">shadow-md</div><span class="tag">floating</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="h2">Buttons</h2>
+    <div class="row">
+      <button class="btn-primary">Remediate document</button>
+      <button class="btn-secondary">Cancel</button>
+      <button class="btn-ghost">Skip</button>
+      <button class="btn-danger">Delete document</button>
+      <button class="btn-primary" disabled style="opacity:.4; cursor:not-allowed;">disabled</button>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="h2">Badges &amp; chips</h2>
+    <div class="row">
+      <span class="badge b-success"><span class="dot" style="background:#5C8A4E"></span>Resolved</span>
+      <span class="badge b-warn"><span class="dot" style="background:#C97A1A"></span>14 unresolved</span>
+      <span class="badge b-error"><span class="dot" style="background:#B14A3A"></span>2 blockers</span>
+      <span class="badge b-info">In review</span>
+      <span class="badge b-neutral">Draft</span>
+      <span class="chip">&lt;h2&gt;</span>
+      <span class="chip">&lt;figure&gt;</span>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="h2">Forms</h2>
+    <div class="row" style="align-items: flex-start;">
+      <div class="field">
+        <label class="field-label" for="ref-title">Document title</label>
+        <input id="ref-title" type="text" value="Annual Report 2025.pdf">
+      </div>
+      <div class="field">
+        <label class="field-label" for="ref-lang">Language</label>
+        <input id="ref-lang" type="text" placeholder="en-US">
+      </div>
+      <div class="field">
+        <label class="field-label" for="ref-tag">Tag prefix</label>
+        <input id="ref-tag" class="input-error" type="text" value="H1—Title" aria-invalid="true" aria-describedby="ref-tag-err">
+        <span id="ref-tag-err" class="error-text">Tags can't contain em dashes.</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="h2">Card</h2>
+    <div class="card">
+      <div class="title">Q3 Investor Deck</div>
+      <div class="meta">42 slides · in review</div>
+      <div class="progress"><div class="progress-fill" style="width:74%"></div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2 class="h2">Logo</h2>
+    <div class="row" style="gap: var(--space-8);">
+      <div class="logo-wrap">
+        <svg width="36" height="36" viewBox="0 0 40 40">
+          <rect x="7" y="6" width="3.5" height="28" rx="1.75" fill="#14181C"/>
+          <rect x="12.5" y="6" width="21" height="3.5" rx="1.75" fill="#14181C"/>
+          <rect x="12.5" y="13.5" width="16" height="3.5" rx="1.75" fill="#2E7567"/>
+          <rect x="12.5" y="21" width="13" height="2.5" rx="1.25" fill="#14181C" opacity="0.35"/>
+          <rect x="12.5" y="27" width="17" height="2.5" rx="1.25" fill="#14181C" opacity="0.35"/>
+        </svg>
+        <span class="wordmark" style="color:#14181C">Pellucid</span>
+      </div>
+      <div class="logo-wrap dark">
+        <svg width="36" height="36" viewBox="0 0 40 40">
+          <rect x="7" y="6" width="3.5" height="28" rx="1.75" fill="#FAF8F3"/>
+          <rect x="12.5" y="6" width="21" height="3.5" rx="1.75" fill="#FAF8F3"/>
+          <rect x="12.5" y="13.5" width="16" height="3.5" rx="1.75" fill="#7AB5A6"/>
+          <rect x="12.5" y="21" width="13" height="2.5" rx="1.25" fill="#FAF8F3" opacity="0.45"/>
+          <rect x="12.5" y="27" width="17" height="2.5" rx="1.25" fill="#FAF8F3" opacity="0.45"/>
+        </svg>
+        <span class="wordmark" style="color:#FAF8F3">Pellucid</span>
+      </div>
+    </div>
+    <p class="caption" style="margin-top: var(--space-3);">Full SVG lockups (primary, on-dark, app icon, mark) are in <code class="mono">assets/</code>.</p>
+  </section>
+
+</body>
+</html>
